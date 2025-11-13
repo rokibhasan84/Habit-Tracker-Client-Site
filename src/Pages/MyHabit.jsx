@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import Swal from 'sweetalert2';
+
 
 const MyHabits = () => {
   const { user } = useContext(AuthContext);
@@ -28,6 +30,33 @@ const MyHabits = () => {
     return <p className="text-center mt-10 text-blue-600 font-semibold">Loading habits...</p>;
   }
 
+  const handleDelete = (id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      axios
+        .delete(`http://localhost:5000/habits/${id}`)
+        .then((res) => {
+          if (res.data.success) {
+            // ✅ UI থেকে মুছে ফেলো
+            setHabits("habits.filter((habit) => habit._id !== id)");
+            Swal.fire("Deleted!", "Your habit has been deleted.", "success");
+          } else {
+            toast.error("Habit not found!");
+          }
+        })
+        .catch(() => toast.error("Delete failed!"));
+    }
+  });
+};
+
   return (
     <div className="max-w-4xl mx-auto mt-10">
       <Toaster />
@@ -51,12 +80,15 @@ const MyHabits = () => {
                 <td className="border px-4 py-2">{habit.title}</td>
                 <td className="border px-4 py-2">{habit.category}</td>
                 <td className="border px-4 py-2">
-                  {new Date(habit.createdAt).toLocaleString("en-GB", {
+                  {new Date(habit.createdAt).toLocaleString("en-US", {
                     dateStyle: "medium",
                     timeStyle: "short",
                     hour12: true,
                     
-                  })}
+                  })
+                  .replace("am", "AM")
+                  .replace("pm", "PM")
+                  }
                 </td>
                 <td className="border px-4 py-2">
                   <button
@@ -66,7 +98,7 @@ const MyHabits = () => {
                     Update
                   </button>
                   <button
-                    onClick={() => toast.error("Delete feature coming soon!")}
+                    onClick={() => handleDelete(habit._id)}
                     className="bg-red-500 text-white px-3 py-1 rounded ml-2 hover:bg-red-600"
                   >
                     Delete
