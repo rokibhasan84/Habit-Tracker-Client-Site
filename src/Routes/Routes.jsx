@@ -1,0 +1,58 @@
+import React from 'react';
+import { createBrowserRouter } from "react-router";
+import MainLayout from '../Layouts/MainLayout';
+import Home from '../Pages/Home';
+import AddHabit from '../Pages/AddHabit';
+import HabitDetails from '../Pages/HabitDetails';
+import MyHabit from '../Pages/MyHabit';
+import Login from '../Pages/Login';
+import Register from '../Pages/Register';
+import PrivateRoute from './PrivateRoute';
+import PublicHabit from '../Pages/PublicHabit';
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: '/',
+        Component: Home,
+      },
+      {
+        path: '/add-habit',
+        element: 
+        <PrivateRoute>
+                <AddHabit/>
+            </PrivateRoute>
+        ,
+      },
+      {
+        path: '/habit-details',
+        Component: HabitDetails,
+      },
+      {
+        path:'/my-habits',
+        element:<PrivateRoute>
+            <MyHabit/>
+        </PrivateRoute> ,
+      },
+      {
+        path: '/browse',
+        Component: PublicHabit,
+      },
+      {
+        path:'/login',
+        Component: Login,
+      },
+      {
+        path: '/register',
+        Component: Register,
+      }
+    ]
+  },
+]);
+
+
+export default router;
