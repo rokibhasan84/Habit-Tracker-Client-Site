@@ -71,6 +71,8 @@ const Register = () => {
                 </div>
         <p className="text-red-500 text-sm">{error}</p>
         <button className="btn btn-outline btn-primary w-full">Register</button>
+        <p className="font-bold text-[#516445] text-center">---- or ----</p>
+
         <button
           type="button"
           onClick={handleGoogle}
@@ -78,7 +80,7 @@ const Register = () => {
         >
           Login with Google
         </button>
-         <p className="text-center mt-4">
+         <p className="text-center mt-2">
         Already have an account?{" "}
         <Link to="/login" className="text-blue-600 font-semibold">Login</Link>
       </p>

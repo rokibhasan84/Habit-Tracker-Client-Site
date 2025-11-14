@@ -105,7 +105,9 @@ const Login = () => {
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
         {/* Login Button */}
-        <button className="btn btn-primary w-full">Login</button>
+        <button className="btn btn-outline btn-primary w-full">Login</button>
+
+        <p className="font-bold text-[#516445] text-center">---- or ----</p>
 
         {/* Google Login */}
         <button
