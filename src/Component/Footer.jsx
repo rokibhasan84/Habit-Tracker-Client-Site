@@ -16,9 +16,9 @@ const Footer = () => {
         <div className="flex-1">
           <Link to='/'><h2 className="text-2xl font-bold text-primary mb-2">HabitTracker</h2></Link>
           <p className="text-sm text-gray-600 leading-relaxed">
-            SkillSwap helps you connect, share, and grow through knowledge exchange.
+            HabitTracker is your ultimate companion for building and maintaining positive habits.
             <br />
-            Learn new things and collaborate with passionate learners around the world.
+            Track your progress, stay motivated, and achieve your goals with ease.
           </p>
         </div>
 
@@ -35,8 +35,8 @@ const Footer = () => {
                   <li className="hover:underline">Add Habit</li>
             </Link>
             
-            <Link to='/browse'>
-                  <li className="hover:underline">Browse</li>
+            <Link to='/public-habits'>
+                  <li className="hover:underline">Public Habits</li>
             </Link>
           </ul>
         </div>

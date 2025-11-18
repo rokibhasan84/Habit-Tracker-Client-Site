@@ -9,6 +9,7 @@ import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import PrivateRoute from './PrivateRoute';
 import PublicHabit from '../Pages/PublicHabit';
+import Profile from '../Pages/Profile';
 
 
 const router = createBrowserRouter([
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
         </PrivateRoute> ,
       },
       {
-        path: '/browse',
+        path: '/public-habits',
         Component: PublicHabit,
       },
       {
@@ -49,6 +50,12 @@ const router = createBrowserRouter([
       {
         path: '/register',
         Component: Register,
+      },
+      {
+        path: '/profile',
+        element: <PrivateRoute> 
+          <Profile></Profile>
+          </PrivateRoute>
       }
     ]
   },
