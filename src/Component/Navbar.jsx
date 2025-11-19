@@ -27,19 +27,43 @@ const Navbar = () => {
           HabitTracker
         </Link>
       </div>
-      {user && (
+      <div className="dropdown dropdown-end md:hidden">
+          
+          <div 
+          tabIndex={0} 
+          role="button" 
+          className="btn btn-ghost"
+          onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {user && (
             <>
-                <div className="tooltip tooltip-bottom md:hidden" data-tip={user.displayName || "User"}>
+                <div className="tooltip tooltip-bottom" data-tip={user.displayName || "User"}>
                   <img
                     src={user.photoURL || "https://i.postimg.cc/T3R9zTny/avatar.png"}
                     alt="avatar"
-                    className="w-8 h-8 rounded-full border border-primary"
+                    className="w-8 h-8 rounded-full border border-primary md:hidden "
                   />
                  
                 </div>
               
             </>
           )}
+          </div>
+
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            {user && <li><NavLink to="/profile" className={activeStyle} onClick={handleLinkClick}>My Profile</NavLink></li>}
+          
+            {user && (
+              <>
+                <li><button onClick={logOut}>Logout</button></li>
+              </>
+            )}
+          </ul>
+          
+        </div>
 
       <div className="flex-none">
         {/* --------- Mobile Dropdown --------- */}
@@ -67,18 +91,13 @@ const Navbar = () => {
              <li><NavLink to="/my-habits" className={activeStyle} onClick={handleLinkClick}>My Habits</NavLink></li>
           <li><NavLink to="/public-habits" className={activeStyle} onClick={handleLinkClick}>Public Habits</NavLink></li>
          
-            {user && <li><NavLink to="/profile" className={activeStyle} onClick={handleLinkClick}>My Profile</NavLink></li>}
             {!user && (
               <>
                 <li><NavLink to="/login" className={activeStyle} onClick={handleLinkClick}>Login</NavLink></li>
                 <li><NavLink to="/signup" className={activeStyle} onClick={handleLinkClick}>Signup</NavLink></li>
               </>
             )}
-            {user && (
-              <>
-                <li><button onClick={logOut}>Logout</button></li>
-              </>
-            )}
+            
           </ul>
           
         </div>
@@ -92,33 +111,49 @@ const Navbar = () => {
           <li><NavLink to="/public-habits" className={activeStyle} onClick={handleLinkClick}>Public Habits</NavLink></li>
           
           
-          {user && <li><NavLink to="/profile" className={activeStyle}>My Profile</NavLink></li>}
           {!user && (
             <>
               <li><NavLink to="/login" className={`{activeStyle} btn btn-outline btn-secondary`}>Login</NavLink></li>
               <li><NavLink to="/register" className={`{activeStyle} btn btn-outline btn-secondary`}>Register</NavLink></li>
             </>
           )}
-          {user && (
+          <div className="dropdown dropdown-end">
+          
+          <div 
+          tabIndex={0} 
+          role="button" 
+          className="btn btn-ghost"
+          onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {user && (
             <>
-              <li>
                 <div className="tooltip tooltip-bottom" data-tip={user.displayName || "User"}>
                   <img
                     src={user.photoURL || "https://i.postimg.cc/T3R9zTny/avatar.png"}
                     alt="avatar"
-                    className="w-8 h-8 rounded-full border border-primary"
+                    className="w-8 h-8 rounded-full border border-primary "
                   />
                  
                 </div>
-              </li>
-              <li>
-                 <ul>
-                        <li><button onClick={logOut} className="btn btn-outline btn-secondary">Logout</button></li>
-                  </ul>
-              </li>
               
             </>
           )}
+          </div>
+
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            {user && <li><NavLink to="/profile" className={activeStyle} onClick={handleLinkClick}>My Profile</NavLink></li>}
+          
+            {user && (
+              <>
+                <li><button onClick={logOut}>Logout</button></li>
+              </>
+            )}
+          </ul>
+          
+        </div>
             <input type="checkbox" className='toggle theme-controller' value="dark" id="" />
 
         </ul>

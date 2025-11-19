@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router";
 
 const PublicHabit = () => {
   const [habits, setHabits] = useState([]);
@@ -74,6 +75,12 @@ const PublicHabit = () => {
                   timeStyle: "short",
                 })}
               </p>
+              <Link
+  to={`/habit/${habit._id}`}
+  className="mt-3 inline-block px-4 py-2 hover:text-white rounded btn btn-outline btn-accent"
+>
+  View Details
+</Link>
             </div>
           ))}
         </div>

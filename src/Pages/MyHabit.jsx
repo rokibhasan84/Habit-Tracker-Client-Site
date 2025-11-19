@@ -178,7 +178,7 @@ const MyHabits = () => {
                 <button
   onClick={() => handleComplete(habit._id)}
   className={`px-4 py-1 rounded text-white mt-5 ${
-    habit.status === "complete" ? "bg-green-500" : "bg-blue-500"
+    habit.status === "complete" ? "bg-green-500" : "bg-[#122ca079]"
   }`}
   disabled={habit.status === "complete"}
 >
@@ -256,14 +256,14 @@ const MyHabits = () => {
               <button
                 type="button"
                 onClick={() => setEditingHabit(null)}
-                className="bg-gray-400 px-3 py-1 rounded text-white"
+                className=" px-3 py-1 rounded-lg hover:text-white rounded btn btn-outline btn-neutral"
               >
                 Cancel
               </button>
 
               <button
                 type="submit"
-                className="bg-blue-500 px-3 py-1 rounded text-white"
+                className="px-3 py-1 rounded-lg hover:text-white rounded btn btn-outline btn-accent"
               >
                 Save
               </button>

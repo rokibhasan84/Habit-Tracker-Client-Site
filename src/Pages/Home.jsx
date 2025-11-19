@@ -62,7 +62,7 @@ const Home = () => {
 
               <Link
   to={`/habit/${habit._id}`}
-  className="mt-3 inline-block px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+  className="mt-3 inline-block px-4 py-2 hover:text-white rounded btn btn-outline btn-accent"
 >
   View Details
 </Link>
@@ -77,7 +77,7 @@ const Home = () => {
       <div className="text-center mt-8">
         <Link
           to="/public-habits"
-          className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          className="px-6 py-2 hover:text-white rounded btn btn-outline btn-accent"
         >
           See All Public Habits
         </Link>
