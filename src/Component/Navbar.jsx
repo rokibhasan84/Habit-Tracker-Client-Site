@@ -1,6 +1,6 @@
 
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import { Link, NavLink } from 'react-router';
 
@@ -15,21 +15,6 @@ const Navbar = () => {
       : "hover:text-primary";
 
 
-useEffect(() => {
-  const toggle = document.getElementById("themeToggle");
-
-  // Load saved theme
-  const savedTheme = localStorage.getItem("theme") || "light";
-  document.documentElement.setAttribute("data-theme", savedTheme);
-  toggle.checked = savedTheme === "dark";
-
-  toggle.addEventListener("change", () => {
-    const newTheme = toggle.checked ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
-  });
-}, []);
-
 
 
       const handleLinkClick = () => setMenuOpen(false);
@@ -42,10 +27,24 @@ useEffect(() => {
           HabitTracker
         </Link>
       </div>
+      {user && (
+            <>
+                <div className="tooltip tooltip-bottom md:hidden" data-tip={user.displayName || "User"}>
+                  <img
+                    src={user.photoURL || "https://i.postimg.cc/T3R9zTny/avatar.png"}
+                    alt="avatar"
+                    className="w-8 h-8 rounded-full border border-primary"
+                  />
+                 
+                </div>
+              
+            </>
+          )}
 
       <div className="flex-none">
         {/* --------- Mobile Dropdown --------- */}
         <div className="dropdown dropdown-end md:hidden">
+          
           <div 
           tabIndex={0} 
           role="button" 
@@ -83,11 +82,7 @@ useEffect(() => {
           </ul>
           
         </div>
-        <input
-                type="checkbox"
-                className="toggle theme-controller md:hidden "
-                id="themeToggle"
-          />
+        <input type="checkbox" className='toggle theme-controller md:hidden' value="dark" id="" />
 
         {/* --------- Desktop Menu --------- */}
         <ul className="menu menu-horizontal hidden md:flex gap-4 text-[16px] items-center">
@@ -113,16 +108,18 @@ useEffect(() => {
                     alt="avatar"
                     className="w-8 h-8 rounded-full border border-primary"
                   />
+                 
                 </div>
               </li>
-              <li><button onClick={logOut} className="btn btn-outline btn-secondary">Logout</button></li>
+              <li>
+                 <ul>
+                        <li><button onClick={logOut} className="btn btn-outline btn-secondary">Logout</button></li>
+                  </ul>
+              </li>
+              
             </>
           )}
-            <input
-                type="checkbox"
-                className="toggle theme-controller"
-                id="themeToggle"
-          />
+            <input type="checkbox" className='toggle theme-controller' value="dark" id="" />
 
         </ul>
           

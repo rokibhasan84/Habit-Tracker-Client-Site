@@ -71,7 +71,7 @@ const AddHabit = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 border rounded-xl shadow-lg mb-10 bg-white">
+    <div className="max-w-lg mx-auto mt-25 p-6 rounded-xl shadow-lg mb-10 bg-[#7a797918]">
       <Toaster />
 
       <h2 className="text-2xl font-bold text-blue-600 mb-4 text-center">

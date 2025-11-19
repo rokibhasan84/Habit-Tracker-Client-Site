@@ -35,7 +35,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh]">
+    <div className="flex flex-col items-center justify-center min-h-[80vh] mt-20">
       <Toaster />
       <div className="card bg-base-200 w-full max-w-md p-6 rounded-xl shadow-lg">
         <div className="flex flex-col items-center mb-5">

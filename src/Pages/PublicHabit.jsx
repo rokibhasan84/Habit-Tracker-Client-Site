@@ -26,7 +26,7 @@ const PublicHabit = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 px-4">
+    <div className="max-w-6xl mx-auto mt-20 px-4">
       <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
         Browse Public Habits
       </h2>
@@ -38,10 +38,10 @@ const PublicHabit = () => {
           {habits.map((habit) => (
             <div
               key={habit._id}
-              className="border rounded-lg shadow-lg bg-white p-5 hover:shadow-xl transition"
+              className=" rounded-lg shadow-lg bg-white p-5 hover:shadow-xl transition"
             >
               {/* Image */}
-              <div className="w-full h-40 bg-gray-200 rounded mb-4 flex items-center justify-center">
+              <div className="w-full h-50 bg-gray-200 rounded mb-4 flex items-center justify-center">
                 {habit.image ? (
                   <img
                     src={habit.image}

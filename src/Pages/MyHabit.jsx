@@ -118,15 +118,15 @@ const MyHabits = () => {
           {visibleHabits.map((habit) => (
             <div
               key={habit._id}
-              className="border rounded-lg shadow-lg bg-[#22020238] overflow-hidden hover:shadow-xl transition p-5"
+              className="rounded-lg shadow-lg bg-[#22020238] overflow-hidden hover:shadow-xl transition p-2"
             >
               {/* Image */}
-              <div className="h-40 bg-gray-200 flex items-center justify-center rounded-xl">
+              <div className="h-50 bg-gray-200 flex items-center justify-center rounded-lg">
                 {habit.image ? (
                   <img
                     src={habit.image}
                     alt="habit"
-                    className="h-full w-full object-cover rounded-xl"
+                    className="h-full w-full object-cover rounded-lg"
                   />
                 ) : (
                   <span className="text-gray-500">No Image</span>
@@ -134,7 +134,7 @@ const MyHabits = () => {
               </div>
 
               {/* Content */}
-              <div className="p-4">
+              <div className="p-2">
                 <h3 className="text-xl font-bold mb-1 text-gray-800">
                   {habit.title}
                 </h3>
@@ -163,14 +163,14 @@ const MyHabits = () => {
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={() => setEditingHabit(habit)}
-                    className="px-4 py-1 bg-yellow-400 text-black rounded hover:bg-yellow-500"
+                    className="px-4 py-1  text-black rounded btn btn-outline btn-info"
                   >
                     Update
                   </button>
 
                   <button
                     onClick={() => handleDelete(habit._id)}
-                    className="px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                    className="px-4 py-1 text-black rounded btn btn-outline btn-secondary"
                   >
                     Delete
                   </button>
@@ -204,6 +204,7 @@ const MyHabits = () => {
                 category: form.category.value,
                 description: form.description.value,
                 reminderTime: form.reminderTime.value,
+                status: editingHabit.status || "pending",
               };
 
               axios

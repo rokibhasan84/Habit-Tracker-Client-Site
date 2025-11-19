@@ -30,8 +30,10 @@ const router = createBrowserRouter([
         ,
       },
       {
-        path: '/habit-details',
-        Component: HabitDetails,
+        path: '/habit/:id',
+        element: <PrivateRoute>
+          <HabitDetails></HabitDetails>
+        </PrivateRoute> 
       },
       {
         path:'/my-habits',
