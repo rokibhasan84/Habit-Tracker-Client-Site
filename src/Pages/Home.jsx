@@ -1,87 +1,19 @@
 import React from 'react';
-
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import HeroSlider from '../Component/HeroSlider';
+import HomeCard from '../Component/HomeCard';
+import WhyBuildHabits from '../Component/WhyBuildHabits';
+import ExtraSection from '../Component/ExtraSection';
 
 const Home = () => {
-  const [publicHabits, setPublicHabits] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/public-habits")
-      .then((res) => {
-        setPublicHabits(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, []);
-
   return (
-    <div className="max-w-6xl mx-auto py-15 px-4">
+    <div className='max-w-6xl mx-auto py-15 px-4'>
+      <HeroSlider></HeroSlider>
+      <HomeCard></HomeCard>
+      <WhyBuildHabits></WhyBuildHabits>
+      <ExtraSection></ExtraSection>
 
-      <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">
-        Latest Public Habits
-      </h2>
 
-      {loading ? (
-        <p className="text-center text-blue-500">Loading habits...</p>
-      ) : publicHabits.length === 0 ? (
-        <p className="text-center text-gray-500">No public habits available.</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {publicHabits.map((habit) => (
-            <div
-              key={habit._id}
-              className="rounded-lg shadow bg-white overflow-hidden hover:shadow-xl transition p-4"
-            >
-              <div className="h-50 bg-gray-100 flex items-center justify-center">
-                {habit.image ? (
-                  <img
-                    src={habit.image}
-                    className="h-full w-full object-cover rounded-lg"
-                    alt=""
-                  />
-                ) : (
-                  <span className="text-gray-500">No Image</span>
-                )}
-              </div>
-
-              <h3 className="text-xl font-semibold mt-3">{habit.title}</h3>
-              <p className="text-sm text-blue-600 bg-blue-100 inline-block px-2 py-1 rounded mt-1">
-                {habit.category}
-              </p>
-
-              <p className="text-sm text-gray-600 mt-2">
-                {habit.description?.slice(0, 70)}...
-              </p>
-
-              <Link
-  to={`/habit/${habit._id}`}
-  className="mt-3 inline-block px-4 py-2 hover:text-white rounded btn btn-outline btn-accent"
->
-  View Details
-</Link>
-
-            </div>
-          ))}
-
-        </div>
-      )}
-
-      {/* See All Button */}
-      <div className="text-center mt-8">
-        <Link
-          to="/public-habits"
-          className="px-6 py-2 hover:text-white rounded btn btn-outline btn-accent"
-        >
-          See All Public Habits
-        </Link>
-      </div>
     </div>
   );
 };

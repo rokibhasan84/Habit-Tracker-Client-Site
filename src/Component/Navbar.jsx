@@ -54,7 +54,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {user && <li><NavLink to="/profile" className={activeStyle} onClick={handleLinkClick}>My Profile</NavLink></li>}
+            {user && <li><NavLink to="/profile" className={activeStyle}  onClick={handleLinkClick}>My Profile</NavLink></li>}
           
             {user && (
               <>
@@ -144,7 +144,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {user && <li><NavLink to="/profile" className={activeStyle} onClick={handleLinkClick}>My Profile</NavLink></li>}
+            {user && <li><NavLink to="/profile" className={`{activeStyle}`} onClick={handleLinkClick}>My Profile</NavLink></li>}
           
             {user && (
               <>

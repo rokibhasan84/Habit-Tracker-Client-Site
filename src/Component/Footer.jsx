@@ -49,12 +49,15 @@ const Footer = () => {
             📞 +880 1712 345 678 <br />
             ✉ support@habittracker.com
           </p>
-          <div className="flex gap-3 mt-3">
-            <a href="#" className="hover:text-primary"><FaFacebook /></a>
-            <a href="#" className="hover:text-primary"><BsInstagram /></a>
-            <a href="#" className="hover:text-primary"><FaSquareTwitter /></a>
-          </div>
         </div>
+        <div className="flex-1">
+          <h3 className="text-lg font-semibold mb-2 text-primary">Social Midea</h3>
+            <div className="flex gap-3">
+            <a href="https://www.facebook.com/rokib.hasan.798857" className="hover:text-warning text-2xl text-secondary"><FaFacebook /></a>
+            <a href="https://www.instagram.com/rokibhasan75/" className="hover:text-warning text-2xl text-secondary"><BsInstagram /></a>
+            <a href="#" className="hover:text-warning text-2xl text-secondary"><FaSquareTwitter /></a>
+            </div>
+          </div>
       </div>
 
       <div className="border-t border-base-300 mt-8 pt-4 text-center text-lg text-[#aa34ee]">

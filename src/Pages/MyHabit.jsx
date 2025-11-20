@@ -69,7 +69,7 @@ const MyHabits = () => {
   }
 
   const handleComplete = (id) => {
-  axios.put(`http://localhost:5000/habits/${id}, { status: "complete" }`)
+  axios.put(`http://localhost:5000/habits/${id}`, { status: "complete" })
     .then(() => {
       setHabits((prev) =>
         prev.map((h) =>
@@ -118,7 +118,7 @@ const MyHabits = () => {
           {visibleHabits.map((habit) => (
             <div
               key={habit._id}
-              className="rounded-lg shadow-lg bg-[#22020238] overflow-hidden hover:shadow-xl transition p-2"
+              className="rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-xl transition p-2"
             >
               {/* Image */}
               <div className="h-50 bg-gray-200 flex items-center justify-center rounded-lg">
@@ -148,7 +148,7 @@ const MyHabits = () => {
 </p>
 
                 <p className="text-gray-600 text-sm mb-3">
-                  {habit.description}
+                  {habit.description?.slice(0, 70)}...
                 </p>
 
                 <p className="text-xs text-gray-400">

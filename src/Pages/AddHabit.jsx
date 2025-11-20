@@ -1,3 +1,4 @@
+
 import React, { useContext, useState } from 'react';
 import { AuthContext } from "../providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
@@ -7,15 +8,26 @@ const AddHabit = () => {
   const { user } = useContext(AuthContext);
   const [imageFile, setImageFile] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [imageURL, setImageURL] = useState("");
 
   const IMGBB_KEY = "549399a3608631ef596c7b4da04c6c64";
 
+  // Handle file input
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImageFile(file);
+    setImageURL(""); 
     setPreview(URL.createObjectURL(file));
   };
 
+  // Handle URL input
+  const handleURLChange = (e) => {
+    setImageURL(e.target.value);
+    setImageFile(null); // reset file
+    setPreview(e.target.value);
+  };
+
+  // Upload file to ImgBB
   const uploadImageToImgBB = async () => {
     const formData = new FormData();
     formData.append("image", imageFile);
@@ -25,16 +37,18 @@ const AddHabit = () => {
     return response.data.data.url;
   };
 
+  // Submit form
   const handleAddHabit = async (e) => {
     e.preventDefault();
     const form = e.target;
 
-    let imageURL = "";
+    let finalImage = "";
 
+    // CASE 1: If file uploaded → upload to imgbb
     if (imageFile) {
       const loadingToast = toast.loading("Uploading image...");
       try {
-        imageURL = await uploadImageToImgBB();
+        finalImage = await uploadImageToImgBB();
         toast.dismiss(loadingToast);
         toast.success("Image uploaded!");
       } catch {
@@ -43,6 +57,12 @@ const AddHabit = () => {
         return;
       }
     }
+    // CASE 2: If URL was given → use it directly
+    else if (imageURL.trim().length > 3) {
+      finalImage = imageURL;
+    }
+
+    // CASE 3: Nothing → empty string
 
     const newHabit = {
       title: form.title.value,
@@ -53,17 +73,18 @@ const AddHabit = () => {
       userName: user?.displayName,
       createdAt: new Date(),
       isPublic: true,
-      image: imageURL,
+      image: finalImage,
       status: "pending",
     };
 
     try {
       const res = await axios.post("http://localhost:5000/habits", newHabit);
       if (res.data.insertedId) {
-        toast.success("Habit added successfully!");
+        toast.success("Habit added!");
         form.reset();
         setPreview(null);
         setImageFile(null);
+        setImageURL("");
       }
     } catch {
       toast.error("Failed to add habit!");
@@ -71,12 +92,9 @@ const AddHabit = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-25 p-6 rounded-xl shadow-lg mb-10 bg-[#7a797918]">
+    <div className="max-w-lg mx-auto mt-10 p-6 border rounded-xl shadow-lg mb-10 bg-white">
       <Toaster />
-
-      <h2 className="text-2xl font-bold text-blue-600 mb-4 text-center">
-        Add New Habit
-      </h2>
+      <h2 className="text-2xl font-bold text-blue-600 mb-4 text-center">Add New Habit</h2>
 
       <form onSubmit={handleAddHabit} className="space-y-4">
 
@@ -89,6 +107,7 @@ const AddHabit = () => {
           />
         )}
 
+        {/* Upload Image Input */}
         <input
           type="file"
           accept="image/*"
@@ -96,20 +115,18 @@ const AddHabit = () => {
           onChange={handleImageChange}
         />
 
+        {/* OR URL Input */}
         <input
-          name="title"
           type="text"
-          placeholder="Habit Title"
-          required
-          className="w-full p-2 border rounded"
+          placeholder="OR paste image URL"
+          value={imageURL}
+          onChange={handleURLChange}
+          className="w-full border rounded p-2"
         />
 
-        <textarea
-          name="description"
-          placeholder="Description"
-          required
-          className="w-full p-2 border rounded"
-        ></textarea>
+        <input name="title" type="text" placeholder="Habit Title" required className="w-full p-2 border rounded" />
+
+        <textarea name="description" placeholder="Description" required className="w-full p-2 border rounded"></textarea>
 
         <select name="category" required className="w-full p-2 border rounded">
           <option value="">Select Category</option>
@@ -118,16 +135,162 @@ const AddHabit = () => {
           <option value="Fitness">Fitness</option>
           <option value="Evening">Evening</option>
           <option value="Study">Study</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Health">Health</option>
+          <option value="Health">Health</option>
         </select>
 
         <input name="reminderTime" type="time" className="w-full p-2 border rounded" />
 
-        <button className="btn btn-outline btn-primary w-full">
-          Add Habit
-        </button>
+        <button className="btn btn-outline btn-primary w-full">Add Habit</button>
       </form>
     </div>
   );
 };
 
 export default AddHabit;
+
+
+
+
+
+
+
+
+
+// import React, { useContext, useState } from 'react';
+// import { AuthContext } from "../providers/AuthProvider";
+// import toast, { Toaster } from "react-hot-toast";
+// import axios from "axios";
+
+// const AddHabit = () => {
+//   const { user } = useContext(AuthContext);
+//   const [imageFile, setImageFile] = useState(null);
+//   const [preview, setPreview] = useState(null);
+
+//   const IMGBB_KEY = "549399a3608631ef596c7b4da04c6c64";
+
+//   const handleImageChange = (e) => {
+//     const file = e.target.files[0];
+//     setImageFile(file);
+//     setPreview(URL.createObjectURL(file));
+//   };
+
+//   const uploadImageToImgBB = async () => {
+//     const formData = new FormData();
+//     formData.append("image", imageFile);
+
+//     const url = `https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`;
+//     const response = await axios.post(url, formData);
+//     return response.data.data.url;
+//   };
+
+//   const handleAddHabit = async (e) => {
+//     e.preventDefault();
+//     const form = e.target;
+
+//     let imageURL = "";
+
+//     if (imageFile) {
+//       const loadingToast = toast.loading("Uploading image...");
+//       try {
+//         imageURL = await uploadImageToImgBB();
+//         toast.dismiss(loadingToast);
+//         toast.success("Image uploaded!");
+//       } catch {
+//         toast.dismiss(loadingToast);
+//         toast.error("Image upload failed!");
+//         return;
+//       }
+//     }
+
+//     const newHabit = {
+//       title: form.title.value,
+//       description: form.description.value,
+//       category: form.category.value,
+//       reminderTime: form.reminderTime.value,
+//       email: user?.email,
+//       userName: user?.displayName,
+//       createdAt: new Date(),
+//       isPublic: true,
+//       image: imageURL,
+//       status: "pending",
+//     };
+
+//     try {
+//       const res = await axios.post("http://localhost:5000/habits", newHabit);
+//       if (res.data.insertedId) {
+//         toast.success("Habit added successfully!");
+//         form.reset();
+//         setPreview(null);
+//         setImageFile(null);
+//       }
+//     } catch {
+//       toast.error("Failed to add habit!");
+//     }
+//   };
+
+//   return (
+//     <div className="max-w-lg mx-auto mt-25 p-6 rounded-xl shadow-lg mb-10 bg-[#7a797918]">
+//       <Toaster />
+
+//       <h2 className="text-2xl font-bold text-blue-600 mb-4 text-center">
+//         Add New Habit
+//       </h2>
+
+//       <form onSubmit={handleAddHabit} className="space-y-4">
+
+//         {/* Preview Image */}
+//         {preview && (
+//           <img
+//             src={preview}
+//             alt="preview"
+//             className="w-full h-40 object-cover rounded-lg border"
+//           />
+//         )}
+
+//         <input
+//           type="file"
+//           accept="image/*"
+//           className="w-full border rounded p-2"
+//           onChange={handleImageChange}
+//         />
+
+//         <input
+//           name="title"
+//           type="text"
+//           placeholder="Habit Title"
+//           required
+//           className="w-full p-2 border rounded"
+//         />
+
+//         <textarea
+//           name="description"
+//           placeholder="Description"
+//           required
+//           className="w-full p-2 border rounded"
+//         ></textarea>
+
+//         <select name="category" required className="w-full p-2 border rounded">
+//           <option value="">Select Category</option>
+//           <option value="Morning">Morning</option>
+//           <option value="Work">Work</option>
+//           <option value="Fitness">Fitness</option>
+//           <option value="Evening">Evening</option>
+//           <option value="Study">Study</option>
+//           <option value="Lifestyle">Lifestyle</option>
+//           <option value="Health">Health</option>
+//           <option value="Health">Health</option>
+//         </select>
+
+//         <input name="reminderTime" type="time" className="w-full p-2 border rounded" />
+
+//         <button className="btn btn-outline btn-primary w-full">
+//           Add Habit
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default AddHabit;

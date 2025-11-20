@@ -65,7 +65,7 @@ const PublicHabit = () => {
               </span>
 
               {/* Description */}
-              <p className="text-gray-600">{habit.description}</p>
+              <p className="text-gray-600">{habit.description?.slice(0, 70)}...</p>
 
               {/* Created At */}
               <p className="text-sm mt-4 text-gray-500">
