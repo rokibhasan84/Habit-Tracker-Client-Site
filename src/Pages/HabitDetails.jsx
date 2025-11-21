@@ -35,14 +35,24 @@ const HabitDetails = () => {
 
   // Mark Complete Button handler
  const markComplete = () => {
-  axios.put(`http://localhost:5000/habits/complete/${habit._id}`)
-    .then(res => {
-      setHabit(res.data.updatedHabit.value);
+  axios
+    .put(`http://localhost:5000/habits/complete/${habit._id}`)
+    .then((res) => {
+      const updated = res.data.updatedHabit;
+
+      // Update UI instantly
+      setHabit((prev) => ({
+        ...prev,
+        completionDates: updated.completionDates,
+        streak: updated.streak,
+      }));
+
       toast.success("Marked as completed!");
     })
-    
-    .catch(err => {
-      toast.error(err.response?.data?.message || "Error");
+    .catch((error) => {
+      // Read actual server message
+      const msg = error.response?.data?.message || "Something went wrong!";
+      toast.error(msg);
     });
 };
 
