@@ -137,7 +137,7 @@ const AddHabit = () => {
           <option value="Study">Study</option>
           <option value="Lifestyle">Lifestyle</option>
           <option value="Health">Health</option>
-          <option value="Health">Health</option>
+          
         </select>
 
         <input name="reminderTime" type="time" className="w-full p-2 border rounded" />

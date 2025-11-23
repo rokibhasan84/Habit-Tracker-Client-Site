@@ -10,7 +10,7 @@ const HomeCard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/public-habits")
+      .get("http://localhost:5000/public-habits/home-card")
       .then((res) => {
         setPublicHabits(res.data);
         setLoading(false);

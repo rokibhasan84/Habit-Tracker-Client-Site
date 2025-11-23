@@ -49,7 +49,7 @@ const HeroSlider = () => {
               />
 
               {/* Dark Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/20"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/70"></div>
 
               {/* Slider Text */}
               <div className="absolute inset-0 flex flex-col justify-center items-start px-10 md:px-20">

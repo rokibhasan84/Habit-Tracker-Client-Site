@@ -118,10 +118,10 @@ const MyHabits = () => {
           {visibleHabits.map((habit) => (
             <div
               key={habit._id}
-              className="rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-xl transition p-2"
+              className="rounded-lg shadow-lg hover:bg-white overflow-hidden hover:shadow-xl transition p-2"
             >
               {/* Image */}
-              <div className="h-50 bg-gray-200 flex items-center justify-center rounded-lg">
+              <div className="h-50 hover:bg-gray-200 flex items-center justify-center rounded-lg">
                 {habit.image ? (
                   <img
                     src={habit.image}
