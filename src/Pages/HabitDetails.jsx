@@ -34,26 +34,28 @@ const HabitDetails = () => {
   };
 
   // Mark Complete Button handler
- const markComplete = () => {
-  axios
-    .put(`http://localhost:5000/habits/complete/${habit._id}`)
-    .then((res) => {
-      const updated = res.data.updatedHabit;
+ const toggleComplete = async () => {
+  try {
+    const res = await axios.put(
+      `http://localhost:5000/habits/toggle-complete/${habit._id}`
+    );
 
-      // Update UI instantly
-      setHabit((prev) => ({
-        ...prev,
-        completionDates: updated.completionDates,
-        streak: updated.streak,
-      }));
+    if (res.data.status === "completed") {
+      toast.success("Habit marked as completed!");
+    } else {
+      toast.success("Completion undone!");
+    }
 
-      toast.success("Marked as completed!");
-    })
-    .catch((error) => {
-      // Read actual server message
-      const msg = error.response?.data?.message || "Something went wrong!";
-      toast.error(msg);
-    });
+    // UI Update instantly
+    setHabit(prev => ({
+      ...prev,
+      status: res.data.status,
+      completionDates: res.data.completionDates
+    }));
+
+  } catch (err) {
+    toast.error("Failed to update!");
+  }
 };
 
   // Get streak badge
@@ -114,7 +116,7 @@ const HabitDetails = () => {
 
       {/* Mark Complete Button */}
       <button
-        onClick={markComplete}
+        onClick={toggleComplete}
         className="w-full mt-6 py-2 hover:text-white rounded-lg btn btn-outline btn-success "
       >
         Mark as Complete

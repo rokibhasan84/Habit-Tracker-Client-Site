@@ -1,5 +1,6 @@
 import React from "react";
 import ImgHabit from "../assets/Improve.jpeg"
+import { Link } from "react-router";
 
 const ExtraSection = () => {
   return (
@@ -22,9 +23,11 @@ const ExtraSection = () => {
             Track progress, stay motivated, and transform your life step-by-step.
           </p>
 
-          <button className="px-6 py-3 hover:text-white font-semibold rounded-lg shadow-md transition btn btn-outline btn-primary">
+          <Link to='/login'>
+                <button className="px-6 py-3 hover:text-white font-semibold rounded-lg shadow-md transition btn btn-outline btn-primary">
             Get Started Today
           </button>
+          </Link>
         </div>
 
       </div>
