@@ -75,20 +75,16 @@ const HabitDetails = () => {
   return (
     <div className="max-w-3xl mx-auto p-6 mt-25 mb-10 border rounded-xl shadow-lg bg-white">
 
-      {/* Image */}
       {habit.image && (
         <img src={habit.image} className="w-full h-64 object-cover rounded-xl mb-6" />
       )}
 
-      {/* Title */}
       <h1 className="text-3xl font-bold text-blue-600">{habit.title}</h1>
 
-      {/* Category */}
       <p className="mt-2 text-sm bg-blue-100 text-blue-600 px-3 py-1 inline-block rounded-full">
         {habit.category}
       </p>
 
-      {/* Description */}
       <p className="mt-4 text-gray-700">{habit.description}</p>
 
       {/* Creator Info */}
@@ -115,12 +111,14 @@ const HabitDetails = () => {
       </div>
 
       {/* Mark Complete Button */}
-      <button
+      {habit.email === user?.email && (
+        <button
         onClick={toggleComplete}
         className="w-full mt-6 py-2 hover:text-white rounded-lg btn btn-outline btn-success "
       >
-        Mark as Complete
+        {habit.status === "completed" ? "Undo Complete" : "Mark as Complete"}
       </button>
+      )}
     </div>
   );
 };

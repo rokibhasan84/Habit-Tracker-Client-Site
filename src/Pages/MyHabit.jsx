@@ -12,6 +12,8 @@ const MyHabits = () => {
 
   const [searchText, setSearchText] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("All");
+  const [imageURL, setImageURL] = useState("");
+  const [preview, setPreview] = useState(null);
 
   // Load user habits
   useEffect(() => {
@@ -28,6 +30,12 @@ const MyHabits = () => {
         setLoading(false);
       });
   }, [user]);
+
+   // Handle URL input
+  const handleURLChange = (e) => {
+    setImageURL(e.target.value);
+    setPreview(e.target.value);
+  };
 
   // Delete Habit
   const handleDelete = (id) => {
@@ -68,17 +76,30 @@ const MyHabits = () => {
     );
   }
 
-  const handleComplete = (id) => {
-  axios.put(`http://localhost:5000/habits/${id}`, { status: "complete" })
-    .then(() => {
-      setHabits((prev) =>
-        prev.map((h) =>
-          h._id === id ? { ...h, status: "complete" } : h
-        )
-      );
-      toast.success("Habit marked as complete!");
-    })
-    .catch(() => toast.error("Failed to update status"));
+  const handleToggleComplete = async (habit) => {
+  try {
+    const res = await axios.put(
+      `http://localhost:5000/habits/toggle-complete/${habit._id}`
+    );
+
+    if (res.data.status === "completed") {
+      toast.success("Habit marked as completed!");
+    } else {
+      toast.success("Completion undone!");
+    }
+
+    // UI instant update
+    setHabits(prev =>
+      prev.map(h =>
+        h._id === habit._id
+          ? { ...h, status: res.data.status, completionDates: res.data.completionDates }
+          : h
+      )
+    );
+
+  } catch (err) {
+    toast.error("Failed to update!");
+  }
 };
 
   return (
@@ -143,8 +164,8 @@ const MyHabits = () => {
                   {habit.category}
                 </p>
 
-                <p className={`text-sm font-semibold ${habit.status === "complete" ? "text-green-600" : "text-orange-500"}`}>
-  Status: {habit.status === "complete" ? "Completed ✔" : "Pending..."}
+                <p className={`text-sm font-semibold ${habit.status === "completed" ? "text-orange-500" : "text-green-600"}`}>
+  Status: {habit.status === "completed" ? "Pending..." : "Completed ✔"}
 </p>
 
                 <p className="text-gray-600 text-sm mb-3">
@@ -175,15 +196,15 @@ const MyHabits = () => {
                     Delete
                   </button>
                 </div>
-                <button
-  onClick={() => handleComplete(habit._id)}
-  className={`px-4 py-1 rounded text-white mt-5 ${
-    habit.status === "complete" ? "bg-green-500" : "bg-[#122ca079]"
-  }`}
-  disabled={habit.status === "complete"}
+
+                  <button
+  onClick={() => handleToggleComplete(habit)}
+  className={`px-4 py-1 rounded text-white mt-3
+    ${habit.status === "completed" ? "bg-gray-500 hover:bg-gray-600" : "bg-green-600 hover:bg-green-700"}`}
 >
-  {habit.status === "complete" ? "Completed ✔" : "Mark Complete"}
+  {habit.status === "completed" ? "Mark Completed" : "Completed ✔"}
 </button>
+                
               </div>
             </div>
           ))}
@@ -226,6 +247,24 @@ const MyHabits = () => {
             <h2 className="text-xl font-bold text-center mb-4">
               Update Habit
             </h2>
+
+            {/* Preview Image */}
+        {preview && (
+          <img
+            src={preview}
+            alt="preview"
+            className="w-full h-40 object-cover rounded-lg border"
+          />
+        )}
+
+            <input
+          type="text"
+          placeholder="OR paste image URL"
+          value={imageURL}
+          onChange={handleURLChange}
+          defaultValue={editingHabit.image}
+          className="w-full border rounded p-2 mb-3"
+        />
 
             <input
               name="title"
