@@ -11,8 +11,8 @@ const Navbar = () => {
   // Active link style
   const activeStyle = ({ isActive }) =>
     isActive
-      ? "text-primary font-semibold underline underline-offset-4"
-      : "hover:text-primary";
+      ? "text-[#cf0ae0] font-semibold underline underline-offset-4"
+      : "hover:text-[#a911e6d8]";
 
       const handleLinkClick = () => setMenuOpen(false);
   return (
@@ -20,8 +20,8 @@ const Navbar = () => {
       <div className='max-w-[1140px] mx-auto navbar px-4 md:px-10'>
 
       <div className="flex-1">
-        <Link to="/" className="text-lg md:text-2xl font-bold text-primary">
-          HabitTracker
+        <Link to="/" className="text-lg md:text-2xl font-bold text-accent">
+          Habit<span className='text-[#cf0ae0]'>Tracker</span>
         </Link>
       </div>
       <div className="dropdown dropdown-end md:hidden">
@@ -49,7 +49,7 @@ const Navbar = () => {
 
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-35 right-18"
           >
             {user && <li><NavLink to="/profile" className={activeStyle}  onClick={handleLinkClick}>My Profile</NavLink></li>}
           
@@ -141,7 +141,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {user && <li><NavLink to="/profile" className={`{activeStyle}`} onClick={handleLinkClick}>My Profile</NavLink></li>}
+            {user && <li><NavLink to="/profile" className={activeStyle} onClick={handleLinkClick}>My Profile</NavLink></li>}
           
             {user && (
               <>

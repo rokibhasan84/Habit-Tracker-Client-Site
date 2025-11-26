@@ -35,7 +35,7 @@ const HeroSlider = () => {
   ];
 
   return (
-    <div className="mt-6 mb-10">
+    <div className="mt-6 mb-10 max-w-6xl mx-auto px-4">
       <Slider {...settings}>
         {slides.map((slide, index) => (
           <div key={index}>

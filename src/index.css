@@ -1,2 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.btn2{
+    --btn-color: #cf0ae0;
+}

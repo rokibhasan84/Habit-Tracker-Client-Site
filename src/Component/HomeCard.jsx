@@ -24,12 +24,12 @@ const HomeCard = () => {
   return (
     <div className="max-w-6xl mx-auto py-5 px-4">
 
-      <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">
+      <h2 className="text-3xl font-bold text-center text-[#cf0ae0] mb-8">
         Latest Public Habits
       </h2>
 
       {loading ? (
-        <p className="text-center flex justify-center text-blue-500"><Loading></Loading></p>
+        <p className="text-center flex justify-center "><Loading></Loading></p>
       ) : publicHabits.length === 0 ? (
         <p className="text-center text-gray-500">No public habits available.</p>
       ) : (
@@ -53,7 +53,7 @@ const HomeCard = () => {
               </div>
 
               <h3 className="text-xl font-semibold mt-3">{habit.title}</h3>
-              <p className="text-sm text-blue-600 bg-blue-100 inline-block px-2 py-1 rounded mt-1">
+              <p className="text-sm text-[#cf0ae0] bg-blue-100 inline-block px-2 py-1 rounded mt-1">
                 {habit.category}
               </p>
 

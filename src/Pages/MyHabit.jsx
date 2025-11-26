@@ -107,7 +107,7 @@ const MyHabits = () => {
   return (
     <div className="max-w-6xl mx-auto py-10 px-4">
       <Toaster />
-      <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">
+      <h2 className="text-3xl font-bold text-center text-[#cf0ae0] mb-8">
         My Habits
       </h2>
 
@@ -162,7 +162,7 @@ const MyHabits = () => {
                   {habit.title}
                 </h3>
 
-                <p className="text-sm bg-blue-100 inline-block text-blue-600 px-3 py-1 rounded-full mb-3">
+                <p className="text-sm bg-blue-100 inline-block text-[#cf0ae0] px-3 py-1 rounded-full mb-3">
                   {habit.category}
                 </p>
 
@@ -186,7 +186,7 @@ const MyHabits = () => {
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={() => setEditingHabit(habit)}
-                    className="px-4 py-1  text-black rounded btn btn-outline btn-info"
+                    className="px-4 py-1  text-black rounded btn btn-outline btn-accent"
                   >
                     Update
                   </button>
@@ -201,8 +201,8 @@ const MyHabits = () => {
 
                   <button
   onClick={() => handleToggleComplete(habit)}
-  className={`px-4 py-1 rounded text-white mt-3
-    ${habit.status === "completed" ? "bg-gray-500 hover:bg-gray-600" : "bg-green-600 hover:bg-green-700"}`}
+  className={`px-4 py-1 rounded mt-3
+    ${habit.status === "completed" ? "btn btn-outline btn-primary hover:text-white" : "btn btn-outline btn-success hover:text-white"}`}
 >
   {habit.status === "completed" ? "Mark Completed" : "Completed ✔"}
 </button>
@@ -297,14 +297,14 @@ const MyHabits = () => {
               <button
                 type="button"
                 onClick={() => setEditingHabit(null)}
-                className=" px-3 py-1 rounded-lg hover:text-white rounded btn btn-outline btn-neutral"
+                className=" px-3 py-1 rounded-lg hover:text-white btn btn-outline btn-neutral"
               >
                 Cancel
               </button>
 
               <button
                 type="submit"
-                className="px-3 py-1 rounded-lg hover:text-white rounded btn btn-outline btn-accent"
+                className="px-3 py-1 rounded-lg hover:text-white btn btn-outline btn-accent"
               >
                 Save
               </button>

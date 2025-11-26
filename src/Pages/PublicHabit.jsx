@@ -30,7 +30,7 @@ const PublicHabit = () => {
 
   return (
     <div className="max-w-6xl mx-auto mt-20 px-4">
-      <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
+      <h2 className="text-3xl font-bold text-center text-[#cf0ae0] mb-6">
         Browse Public Habits
       </h2>
 
@@ -62,7 +62,7 @@ const PublicHabit = () => {
               </h3>
 
               {/* Category */}
-              <span className="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm mb-3">
+              <span className="inline-block bg-blue-100 text-[#cf0ae0] px-3 py-1 rounded-full text-sm mb-3">
                 {habit.category}
               </span>
 

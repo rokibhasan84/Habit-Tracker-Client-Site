@@ -3,7 +3,7 @@ import React from "react";
 const WhyBuildHabits = () => {
   return (
     <section className="max-w-6xl mx-auto px-4 py-16">
-      <h2 className="text-3xl font-bold text-center text-blue-600 mb-10">
+      <h2 className="text-3xl font-bold text-center text-[#cf0ae0] mb-10">
         Why Build Habits?
       </h2>
 

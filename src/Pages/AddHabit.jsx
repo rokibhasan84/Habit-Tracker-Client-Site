@@ -92,9 +92,9 @@ const AddHabit = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 border rounded-xl shadow-lg mb-10 bg-white">
+    <div className="max-w-lg mx-auto mt-20 p-6 rounded-xl shadow-lg mb-10 bg-white">
       <Toaster />
-      <h2 className="text-2xl font-bold text-blue-600 mb-4 text-center">Add New Habit</h2>
+      <h2 className="text-2xl font-bold text-[#cf0ae0] mb-4 text-center">Add New Habit</h2>
 
       <form onSubmit={handleAddHabit} className="space-y-4">
 
@@ -142,7 +142,7 @@ const AddHabit = () => {
 
         <input name="reminderTime" type="time" className="w-full p-2 border rounded" />
 
-        <button className="btn btn-outline btn-primary w-full">Add Habit</button>
+        <button className="btn btn-outline btn2 w-full">Add Habit</button>
       </form>
     </div>
   );
