@@ -14,9 +14,6 @@ const Navbar = () => {
       ? "text-primary font-semibold underline underline-offset-4"
       : "hover:text-primary";
 
-
-
-
       const handleLinkClick = () => setMenuOpen(false);
   return (
     <div className="bg-base-200 shadow-sm  fixed top-0 right-0 left-0 z-50">

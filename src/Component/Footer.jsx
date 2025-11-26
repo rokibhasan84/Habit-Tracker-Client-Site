@@ -6,6 +6,7 @@ import { FaFacebook } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import { FaSquareTwitter } from "react-icons/fa6";
 
+
 const Footer = () => {
   return (
     <footer className="w-full bg-base-200 py-10">

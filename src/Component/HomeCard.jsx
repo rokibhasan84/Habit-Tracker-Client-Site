@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Loading from './Loading';
 
 const HomeCard = () => {
   const [publicHabits, setPublicHabits] = useState([]);
@@ -28,7 +29,7 @@ const HomeCard = () => {
       </h2>
 
       {loading ? (
-        <p className="text-center text-blue-500">Loading habits...</p>
+        <p className="text-center flex justify-center text-blue-500"><Loading></Loading></p>
       ) : publicHabits.length === 0 ? (
         <p className="text-center text-gray-500">No public habits available.</p>
       ) : (

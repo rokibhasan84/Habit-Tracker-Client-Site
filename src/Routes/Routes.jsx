@@ -10,6 +10,7 @@ import Register from '../Pages/Register';
 import PrivateRoute from './PrivateRoute';
 import PublicHabit from '../Pages/PublicHabit';
 import Profile from '../Pages/Profile';
+import NotFound from '../Pages/NotFound';
 
 
 const router = createBrowserRouter([
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
         element: <PrivateRoute> 
           <Profile></Profile>
           </PrivateRoute>
+      },
+      {
+        path: "*",
+        Component: NotFound,
       }
     ]
   },

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
+import Loading from "../Component/Loading";
 
 const PublicHabit = () => {
   const [habits, setHabits] = useState([]);
@@ -20,8 +21,9 @@ const PublicHabit = () => {
 
   if (loading) {
     return (
-      <p className="text-center mt-10 text-blue-600 font-semibold">
-        Loading public habits...
+      <p className="text-center mt-25 text-blue-600 font-semibold">
+        <Loading></Loading>
+        <p className="text-3xl my-5 text-blue-600 font-bold">Public Habits...</p>
       </p>
     );
   }

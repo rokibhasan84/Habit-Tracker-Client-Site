@@ -3,6 +3,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
 import { AuthContext } from "../providers/AuthProvider";
+import Loading from "../Component/Loading";
 
 const MyHabits = () => {
   const { user } = useContext(AuthContext);
@@ -70,8 +71,9 @@ const MyHabits = () => {
 
   if (loading) {
     return (
-      <p className="text-center mt-10 text-blue-500 font-semibold">
-        Loading habits...
+      <p className="text-center mt-25 text-blue-500 font-semibold">
+        <Loading></Loading>
+        <p className="text-3xl my-5 text-blue-600 font-bold">My Habits...</p>
       </p>
     );
   }
