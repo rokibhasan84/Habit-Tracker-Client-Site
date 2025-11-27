@@ -55,7 +55,7 @@ const Navbar = () => {
           
             {user && (
               <>
-                <li><button onClick={logOut}>Logout</button></li>
+                <li><button onClick={logOut} className={activeStyle}>Logout</button></li>
               </>
             )}
           </ul>
@@ -145,7 +145,7 @@ const Navbar = () => {
           
             {user && (
               <>
-                <li><button onClick={logOut}>Logout</button></li>
+                <li><button onClick={logOut} className={activeStyle}>Logout</button></li>
               </>
             )}
           </ul>

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router";
-import { sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
@@ -41,19 +41,21 @@ const Login = () => {
   };
 
   // Handle Forgot Password
-  const handleForgotPassword = () => {
-    if (!email) {
-      toast.error("Please enter your email address first!");
-      return;
-    }
+  const auth = getAuth();
 
-    sendPasswordResetEmail(email)
-      .then(() => {
-        toast.success("Password reset link sent to your email!");
-        setError("");
-      })
-      .catch((err) => setError(err.message));
-  };
+const handleResetPassword = async (email) => {
+  if (!email) {
+    toast.error("Please enter your email");
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    toast.success("Reset link sent! Check your email.");
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
 
   return (
     <div className="flex justify-center items-center min-h-[70vh]">
@@ -94,7 +96,7 @@ const Login = () => {
         <p className="text-sm text-right">
           <button
             type="button"
-            onClick={handleForgotPassword}
+            onClick={() => navigate("/forget-password")}
             className="text-primary hover:underline"
           >
             Forgot Password?

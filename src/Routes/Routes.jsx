@@ -11,6 +11,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicHabit from '../Pages/PublicHabit';
 import Profile from '../Pages/Profile';
 import NotFound from '../Pages/NotFound';
+import ForgetPassword from '../Pages/ForgetPassword';
 
 
 const router = createBrowserRouter([
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "*",
         Component: NotFound,
+      },
+      {
+        path: "/forget-password",
+        element: <ForgetPassword></ForgetPassword>
       }
     ]
   },
