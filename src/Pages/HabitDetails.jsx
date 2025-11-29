@@ -12,7 +12,7 @@ const HabitDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`http://habit-tracker-server-site.vercel.app/habits/details/${id}`)
+    axios.get(`https://habit-tracker-server-site.vercel.app/habits/details/${id}`)
       .then(res => {
         setHabit(res.data);
         setLoading(false);
@@ -37,7 +37,7 @@ const HabitDetails = () => {
  const toggleComplete = async () => {
   try {
     const res = await axios.put(
-      `http://habit-tracker-server-site.vercel.app/habits/toggle-complete/${habit._id}`
+      `https://habit-tracker-server-site.vercel.app/habits/toggle-complete/${habit._id}`
     );
 
     if (res.data.status === "completed") {

@@ -78,7 +78,7 @@ const AddHabit = () => {
     };
 
     try {
-      const res = await axios.post("http://habit-tracker-server-site.vercel.app/habits", newHabit);
+      const res = await axios.post("https://habit-tracker-server-site.vercel.app/habits", newHabit);
       if (res.data.insertedId) {
         toast.success("Habit added!");
         form.reset();
@@ -137,6 +137,10 @@ const AddHabit = () => {
           <option value="Study">Study</option>
           <option value="Lifestyle">Lifestyle</option>
           <option value="Health">Health</option>
+          <option value="Self-Reflection">Self-Reflection</option>
+          <option value="Mindfulness">Mindfulness</option>
+          <option value="Wellness">Wellness</option>
+
           
         </select>
 

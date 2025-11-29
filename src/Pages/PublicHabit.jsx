@@ -9,7 +9,7 @@ const PublicHabit = () => {
 
   useEffect(() => {
     axios
-      .get("http://habit-tracker-server-site.vercel.app/public-habits")
+      .get("http://localhost:5000/public-habits")
       .then((res) => {
         setHabits(res.data);
         setLoading(false);

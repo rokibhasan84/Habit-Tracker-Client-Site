@@ -11,7 +11,7 @@ const HomeCard = () => {
 
   useEffect(() => {
     axios
-      .get("http://habit-tracker-server-site.vercel.app/public-habits/home-card")
+      .get("https://habit-tracker-server-site.vercel.app/public-habits/home-card")
       .then((res) => {
         setPublicHabits(res.data);
         setLoading(false);
