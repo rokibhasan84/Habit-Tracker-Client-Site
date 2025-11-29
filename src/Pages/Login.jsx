@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router";
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
@@ -40,22 +39,6 @@ const Login = () => {
       .catch((err) => setError(err.message));
   };
 
-  // Handle Forgot Password
-  const auth = getAuth();
-
-const handleResetPassword = async (email) => {
-  if (!email) {
-    toast.error("Please enter your email");
-    return;
-  }
-
-  try {
-    await sendPasswordResetEmail(auth, email);
-    toast.success("Reset link sent! Check your email.");
-  } catch (error) {
-    toast.error(error.message);
-  }
-};
 
   return (
     <div className="flex justify-center items-center min-h-[70vh]">

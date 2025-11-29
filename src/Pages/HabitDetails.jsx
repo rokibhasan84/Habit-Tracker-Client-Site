@@ -12,7 +12,7 @@ const HabitDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/habits/details/${id}`)
+    axios.get(`http://habit-tracker-server-site.vercel.app/habits/details/${id}`)
       .then(res => {
         setHabit(res.data);
         setLoading(false);
@@ -37,7 +37,7 @@ const HabitDetails = () => {
  const toggleComplete = async () => {
   try {
     const res = await axios.put(
-      `http://localhost:5000/habits/toggle-complete/${habit._id}`
+      `http://habit-tracker-server-site.vercel.app/habits/toggle-complete/${habit._id}`
     );
 
     if (res.data.status === "completed") {
@@ -50,7 +50,8 @@ const HabitDetails = () => {
     setHabit(prev => ({
       ...prev,
       status: res.data.status,
-      completionDates: res.data.completionDates
+      completionDates: res.data.completionDates,
+      streak: res.data.streak
     }));
 
   } catch (err) {
@@ -79,17 +80,17 @@ const HabitDetails = () => {
         <img src={habit.image} className="w-full h-64 object-cover rounded-xl mb-6" />
       )}
 
-      <h1 className="text-3xl font-bold text-blue-600">{habit.title}</h1>
+      <h1 className="text-3xl font-bold text-success">{habit.title}</h1>
 
-      <p className="mt-2 text-sm bg-blue-100 text-blue-600 px-3 py-1 inline-block rounded-full">
+      <p className="mt-2 text-sm bg-blue-100 text-[#cf0ae0] px-3 py-1 inline-block rounded-full">
         {habit.category}
       </p>
 
       <p className="mt-4 text-gray-700">{habit.description}</p>
 
       {/* Creator Info */}
-      <div className="mt-6 p-4 border rounded-lg bg-gray-100">
-        <p><b>Created By:</b> {habit.userName}</p>
+      <div className="mt-6 p-4 border rounded-lg text-[#000] bg-gray-100">
+        <p className=""><b>Created By:</b> {habit.userName}</p>
         <p><b>Email:</b> {habit.email}</p>
       </div>
 
@@ -105,9 +106,9 @@ const HabitDetails = () => {
       </div>
 
       {/* Streak Badge */}
-      <div className="mt-6 p-4 border rounded-xl bg-[#b9b5b52c] text-center">
-        <p className="text-xl">{getBadge(badge)}</p>
-        <p className="text-gray-600">Streak: {badge} days</p>
+      <div className="mt-6 p-4 border rounded-xl text-[#000] bg-[#b9b5b52c] text-center">
+        <p className="text-xl">{getBadge(habit.streak)}</p>
+        <p className="text-gray-600">Streak: {habit.streak} days</p>
       </div>
 
       {/* Mark Complete Button */}

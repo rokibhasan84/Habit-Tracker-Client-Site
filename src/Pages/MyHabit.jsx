@@ -21,7 +21,7 @@ const MyHabits = () => {
     if (!user?.email) return;
 
     axios
-      .get(`http://localhost:5000/habits/${user.email}`)
+      .get(`http://habit-tracker-server-site.vercel.app/habits/${user.email}`)
       .then((res) => {
         setHabits(res.data);
         setLoading(false);
@@ -50,7 +50,7 @@ const MyHabits = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/habits/${id}`)
+          .delete(`http://habit-tracker-server-site.vercel.app/habits/${id}`)
           .then(() => {
             setHabits((prev) => prev.filter((habit) => habit._id !== id));
             toast.success("Habit deleted!");
@@ -81,7 +81,7 @@ const MyHabits = () => {
   const handleToggleComplete = async (habit) => {
   try {
     const res = await axios.put(
-      `http://localhost:5000/habits/toggle-complete/${habit._id}`
+      `http://habit-tracker-server-site.vercel.app/habits/toggle-complete/${habit._id}`
     );
 
     if (res.data.status === "completed") {
@@ -231,7 +231,7 @@ const MyHabits = () => {
               };
 
               axios
-                .put(`http://localhost:5000/habits/${editingHabit._id}`, updated)
+                .put(`http://habit-tracker-server-site.vercel.app/habits/${editingHabit._id}`, updated)
                 .then(() => {
                   setHabits((prev) =>
                     prev.map((h) =>

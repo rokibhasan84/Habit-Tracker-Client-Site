@@ -78,7 +78,7 @@ const AddHabit = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:5000/habits", newHabit);
+      const res = await axios.post("http://habit-tracker-server-site.vercel.app/habits", newHabit);
       if (res.data.insertedId) {
         toast.success("Habit added!");
         form.reset();
