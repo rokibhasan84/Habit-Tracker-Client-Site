@@ -12,6 +12,7 @@ import PublicHabit from '../Pages/PublicHabit';
 import Profile from '../Pages/Profile';
 import NotFound from '../Pages/NotFound';
 import ForgetPassword from '../Pages/ForgetPassword';
+import ChangePassword from '../Pages/ChangePassword';
 
 
 const router = createBrowserRouter([
@@ -68,6 +69,12 @@ const router = createBrowserRouter([
       {
         path: "/forget-password",
         element: <ForgetPassword></ForgetPassword>
+      },
+      {
+        path: '/change-password',
+        element: <PrivateRoute>
+          <ChangePassword></ChangePassword>
+          </PrivateRoute>
       }
     ]
   },

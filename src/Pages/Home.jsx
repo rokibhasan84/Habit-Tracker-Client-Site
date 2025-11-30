@@ -3,6 +3,7 @@ import HeroSlider from '../Component/HeroSlider';
 import HomeCard from '../Component/HomeCard';
 import WhyBuildHabits from '../Component/WhyBuildHabits';
 import ExtraSection from '../Component/ExtraSection';
+import FAQSection from '../Component/FAQSection';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <HomeCard></HomeCard>
       <WhyBuildHabits></WhyBuildHabits>
       <ExtraSection></ExtraSection>
+      <FAQSection></FAQSection>
 
 
 

@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { updateProfile, sendPasswordResetEmail } from "firebase/auth";
+import { updateProfile} from "firebase/auth";
 import { auth } from '../Firebase/Firebase.config';
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -23,17 +24,7 @@ const Profile = () => {
     }
   };
 
-  const handleResetPassword = async () => {
-
-    try {
-      await sendPasswordResetEmail(auth, user.email);
-      toast.success("📩 Password reset email sent!");
-    } catch (error) {
-      toast.error("❌ Could not send reset email!");
-      console.error(error);
-    }
-  };
-
+ 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] mt-20">
       <Toaster />
@@ -73,12 +64,16 @@ const Profile = () => {
         {/* Password Reset */}
         <div className="mt-5 text-center">
           <h3 className="text-lg font-semibold mb-2">Forgot Password?</h3>
-          <button
-            onClick={handleResetPassword}
+          
+          <Link to='/change-password'
             className="btn btn-outline btn-secondary w-full"
           >
-            Send Reset Email
-          </button>
+            Change Password
+          </Link>
+            
+          
+
+          
         </div>
       </div>
     </div>

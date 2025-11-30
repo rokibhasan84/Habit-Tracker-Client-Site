@@ -52,7 +52,7 @@ const HomeCard = () => {
                 )}
               </div>
 
-              <h3 className="text-xl text-accent font-semibold mt-3">{habit.title}</h3>
+              <h3 className="text-xl text-gray-800 font-bold mt-3">{habit.title}</h3>
               <p className="text-sm text-[#cf0ae0] bg-blue-100 inline-block px-2 py-1 rounded mt-1">
                 {habit.category}
               </p>

@@ -96,9 +96,7 @@ const MyHabits = () => {
         h._id === habit._id
           ? { ...h, status: res.data.status, completionDates: res.data.completionDates }
           : h
-      )
-    );
-
+      ));
   } catch (err) {
     toast.error("Failed to update!");
   }
@@ -130,6 +128,11 @@ const MyHabits = () => {
           <option value="Fitness">Fitness</option>
           <option value="Evening">Evening</option>
           <option value="Study">Study</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Health">Health</option>
+          <option value="Self-Reflection">Self-Reflection</option>
+          <option value="Mindfulness">Mindfulness</option>
+          <option value="Wellness">Wellness</option>
         </select>
       </div>
 

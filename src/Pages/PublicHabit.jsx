@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
@@ -6,6 +7,10 @@ import Loading from "../Component/Loading";
 const PublicHabit = () => {
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(true);
+
+    // Filters
+  const [searchText, setSearchText] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("All");
 
   useEffect(() => {
     axios
@@ -19,7 +24,16 @@ const PublicHabit = () => {
       });
   }, []);
 
-  if (loading) {
+  // Filter + Search Logic
+  const visibleHabits = habits
+    .filter((h) =>
+      (h.title || "").toLowerCase().includes(searchText.toLowerCase())
+    )
+    .filter((h) =>
+      categoryFilter === "All" ? true : h.category === categoryFilter
+    );
+
+   if (loading) {
     return (
       <p className="text-center mt-25 text-blue-600 font-semibold">
         <Loading></Loading>
@@ -34,22 +48,50 @@ const PublicHabit = () => {
         Browse Public Habits
       </h2>
 
-      {habits.length === 0 ? (
-        <p className="text-center text-gray-500">No public habits available.</p>
+            {/* Search + Filter */}
+      <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <input
+          type="text"
+          placeholder="Search public habits..."
+          className="border p-2 rounded w-full md:w-1/2"
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+
+        <select
+          onChange={(e) => setCategoryFilter(e.target.value)}
+          className="border p-2 rounded w-full md:w-1/3"
+        >
+          <option value="All">All Categories</option>
+          <option value="Morning">Morning</option>
+          <option value="Work">Work</option>
+          <option value="Fitness">Fitness</option>
+          <option value="Evening">Evening</option>
+          <option value="Study">Study</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="Health">Health</option>
+          <option value="Self-Reflection">Self-Reflection</option>
+          <option value="Mindfulness">Mindfulness</option>
+          <option value="Wellness">Wellness</option>
+        </select>
+      </div>
+
+      {/* Habit Cards */}
+      {visibleHabits.length === 0 ? (
+        <p className="text-center text-gray-500">No habits match your filter.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-5">
-          {habits.map((habit) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {visibleHabits.map((habit) => (
             <div
               key={habit._id}
-              className=" rounded-lg shadow-lg bg-white p-5 hover:shadow-xl transition"
+              className="border rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-xl transition p-4"
             >
               {/* Image */}
-              <div className="w-full h-50 bg-gray-200 rounded mb-4 flex items-center justify-center">
+              <div className="h-40 bg-gray-200 flex items-center justify-center">
                 {habit.image ? (
                   <img
                     src={habit.image}
                     alt="habit"
-                    className="w-full h-full object-cover rounded"
+                    className="h-full w-full object-cover rounded-lg"
                   />
                 ) : (
                   <span className="text-gray-500">No Image</span>
