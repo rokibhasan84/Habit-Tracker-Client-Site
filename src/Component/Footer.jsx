@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import { FaFacebook } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import { FaSquareTwitter } from "react-icons/fa6";
+import logoImg from "/habit-tracker-icon.webp";
 
 
 const Footer = () => {
@@ -15,7 +16,8 @@ const Footer = () => {
         
        
         <div className="flex-1">
-          <Link to="/" className="text-lg md:text-2xl font-bold text-accent">
+          <Link to="/" className="text-lg md:text-2xl font-bold text-accent flex items-center gap-2">
+          <img src={logoImg} alt="" className='w-8 rounded-full'/>
           Habit<span className='text-[#cf0ae0]'>Tracker</span>
         </Link>
           <p className="text-sm text-gray-600 leading-relaxed">

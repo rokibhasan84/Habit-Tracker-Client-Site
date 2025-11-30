@@ -3,6 +3,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import { Link, NavLink } from 'react-router';
+import logoImg from "/habit-tracker-icon.webp";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -20,7 +21,8 @@ const Navbar = () => {
       <div className='max-w-[1140px] mx-auto navbar px-4 md:px-10'>
 
       <div className="flex-1">
-        <Link to="/" className="text-lg md:text-2xl font-bold text-accent">
+        <Link to="/" className="text-lg md:text-2xl font-bold text-accent flex items-center gap-2">
+        <img src={logoImg} alt="" className='w-10 rounded-full'/>
           Habit<span className='text-[#cf0ae0]'>Tracker</span>
         </Link>
       </div>
@@ -64,7 +66,7 @@ const Navbar = () => {
 
       <div className="flex-none">
 
-        
+
         {/* --------- Mobile Dropdown --------- */}
         <div className="dropdown dropdown-end md:hidden">
           
