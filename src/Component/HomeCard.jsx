@@ -74,7 +74,6 @@ const HomeCard = () => {
         </div>
       )}
 
-      {/* See All Button */}
       <div className="text-center mt-8">
         <Link
           to="/public-habits"

@@ -63,6 +63,8 @@ const Navbar = () => {
         </div>
 
       <div className="flex-none">
+
+        
         {/* --------- Mobile Dropdown --------- */}
         <div className="dropdown dropdown-end md:hidden">
           

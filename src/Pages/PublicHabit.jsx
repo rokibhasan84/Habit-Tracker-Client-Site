@@ -83,7 +83,7 @@ const PublicHabit = () => {
           {visibleHabits.map((habit) => (
             <div
               key={habit._id}
-              className="border rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-xl transition p-4"
+              className="rounded-lg shadow-lg bg-white overflow-hidden hover:shadow-xl transition p-4"
             >
               {/* Image */}
               <div className="h-40 bg-gray-200 flex items-center justify-center">

@@ -71,10 +71,10 @@ const HabitDetails = () => {
   if (!habit) return <h2 className="text-center mt-10 text-red-600">Habit Not Found!</h2>;
 
   const progress = calculateProgress();
-  const badge = getBadge(habit.streak);
+  
 
   return (
-    <div className="max-w-3xl mx-auto p-6 mt-25 mb-10 border rounded-xl shadow-lg bg-white">
+    <div className="max-w-3xl mx-auto p-6 mt-25 mb-10 rounded-xl shadow-lg bg-white">
 
       {habit.image && (
         <img src={habit.image} className="w-full h-64 object-cover rounded-xl mb-6" />
