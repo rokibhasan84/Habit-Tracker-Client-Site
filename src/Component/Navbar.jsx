@@ -23,7 +23,7 @@ const Navbar = () => {
       <div className="flex-1">
         <Link to="/" className="text-lg md:text-2xl font-bold text-accent flex items-center gap-2">
         <img src={logoImg} alt="" className='w-10 rounded-full'/>
-          Habit<span className='text-[#cf0ae0]'>Tracker</span>
+        Habit<span className='text-[#cf0ae0]'>Tracker</span>
         </Link>
       </div>
       <div className="dropdown dropdown-end md:hidden">

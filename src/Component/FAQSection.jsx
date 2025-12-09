@@ -47,7 +47,7 @@ const FAQSection = () => {
           <div
             key={index}
             onClick={() => toggleFAQ(index)}
-            className=" rounded-xl p-4 cursor-pointer bg-white shadow-sm hover:shadow-md transition"
+            className=" rounded-xl p-4 text-[#000] cursor-pointer bg-white shadow-sm hover:shadow-md transition"
           >
             {/* Question */}
             <div className="flex justify-between items-center">
