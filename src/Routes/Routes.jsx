@@ -4,7 +4,7 @@ import MainLayout from '../Layouts/MainLayout';
 import Home from '../Pages/Home';
 import AddHabit from '../Pages/AddHabit';
 import HabitDetails from '../Pages/HabitDetails';
-import MyHabit from '../Pages/MyHabit';
+import MyHabit from '../Pages/Dashboard/MyHabit';
 import Login from '../Pages/Login';
 import Register from '../Pages/Register';
 import PrivateRoute from './PrivateRoute';
@@ -13,6 +13,11 @@ import Profile from '../Pages/Profile';
 import NotFound from '../Pages/NotFound';
 import ForgetPassword from '../Pages/ForgetPassword';
 import ChangePassword from '../Pages/ChangePassword';
+import DashboardLayout from '../Layouts/DashboardLayout';
+import DashboardHome from '../Pages/Dashboard/DashboardHome';
+import Analytics from '../Pages/Dashboard/Analytics';
+import AdminUsers from '../Pages/Dashboard/AdminUsers';
+import AdminHabits from '../Pages/Dashboard/AdminHabits';
 
 
 const router = createBrowserRouter([
@@ -37,12 +42,6 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <HabitDetails></HabitDetails>
         </PrivateRoute> 
-      },
-      {
-        path:'/my-habits',
-        element:<PrivateRoute>
-            <MyHabit/>
-        </PrivateRoute> ,
       },
       {
         path: '/public-habits',
@@ -75,8 +74,33 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <ChangePassword></ChangePassword>
           </PrivateRoute>
-      }
-    ]
+      },
+      {
+        path: "/dashboard",
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+          {
+            index: true, element: <DashboardHome></DashboardHome>
+          },
+          {
+            path: "analytics",
+            element: <Analytics></Analytics>
+          },
+          {
+            path: "admin-users",
+            element: <AdminUsers></AdminUsers>
+          },
+          {
+            path: "admin-habits",
+            element: <AdminHabits></AdminHabits>
+          },
+          {
+            path: "my-habits",
+            element: <MyHabit></MyHabit>
+          },
+        ],
+      },
+    ],
   },
 ]);
 

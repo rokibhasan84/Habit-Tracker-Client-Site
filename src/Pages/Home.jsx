@@ -4,6 +4,8 @@ import HomeCard from '../Component/HomeCard';
 import WhyBuildHabits from '../Component/WhyBuildHabits';
 import ExtraSection from '../Component/ExtraSection';
 import FAQSection from '../Component/FAQSection';
+import About from '../Component/About';
+import Testimonials from '../Component/Testimonials';
 
 const Home = () => {
   return (
@@ -13,9 +15,9 @@ const Home = () => {
       <WhyBuildHabits></WhyBuildHabits>
       <ExtraSection></ExtraSection>
       <FAQSection></FAQSection>
-
-
-
+      <Testimonials></Testimonials>
+      <CallToAction></CallToAction>
+      <About></About>
     </div>
   );
 };

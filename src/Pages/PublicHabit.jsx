@@ -43,7 +43,7 @@ const PublicHabit = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-20 px-4">
+    <div className="max-w-6xl mx-auto mt-20 px-4 mb-10">
       <h2 className="text-3xl font-bold text-center text-[#cf0ae0] mb-6">
         Browse Public Habits
       </h2>

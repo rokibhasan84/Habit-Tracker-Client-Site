@@ -8,7 +8,6 @@ import { IoMdEyeOff } from "react-icons/io";
 
 const Register = () => {
   const { createUser, updateUserProfile, googleLogin } = useContext(AuthContext);
-  const from = location.state?.from?.pathname || "/";
   const [error, setError] = useState("");
   const [showPassword, setShowPassword]=useState(false);
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ const Register = () => {
     googleLogin()
       .then(() => {
         toast.success("Google Login Successful!");
-        navigate(from, { replace: true });
+        navigate("/dashboard");
       })
       .catch((err) => setError(err.message));
   };
@@ -38,7 +37,7 @@ const Register = () => {
       .then(() => {
         updateUserProfile(name, photo).then(() => {
           toast.success("Signup successful!");
-          navigate("/");
+          navigate("/dashboard");
         });
       })
       .catch((err) => setError(err.message));

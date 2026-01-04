@@ -1,13 +1,28 @@
 
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
 import { Link, NavLink } from 'react-router';
 import logoImg from "/habit-tracker-icon.webp";
+import { PiSunLight } from "react-icons/pi";
+import { PiSunDimFill } from "react-icons/pi";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, loading, logOut } = useContext(AuthContext);
   const {menuOpen, setMenuOpen}=useState(false);
+
+  // Theme State
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  const handleThemeToggle = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  useEffect(() => {
+    document.querySelector("html").setAttribute("data-theme", theme);
+  }, [theme]);
 
   // Active link style
   const activeStyle = ({ isActive }) =>
@@ -16,6 +31,13 @@ const Navbar = () => {
       : "hover:text-[#a911e6d8]";
 
       const handleLinkClick = () => setMenuOpen(false);
+      if (loading) {
+        return (
+          <div className='w-full p-4 text-center font-bold text-2xl'>
+            Loading...
+          </div>
+        )
+      }
   return (
     <div className="bg-base-200 shadow-sm  fixed top-0 right-0 left-0 z-50">
       <div className='max-w-[1140px] mx-auto navbar px-4 md:px-10'>
@@ -66,7 +88,6 @@ const Navbar = () => {
 
       <div className="flex-none">
 
-
         {/* --------- Mobile Dropdown --------- */}
         <div className="dropdown dropdown-end md:hidden">
           
@@ -89,8 +110,8 @@ const Navbar = () => {
           >
             <li><NavLink to="/" className={activeStyle} onClick={handleLinkClick}>Home</NavLink></li>
              <li><NavLink to="/add-habit" className={activeStyle} onClick={handleLinkClick} >Add Habit</NavLink></li>
-             <li><NavLink to="/my-habits" className={activeStyle} onClick={handleLinkClick}>My Habits</NavLink></li>
           <li><NavLink to="/public-habits" className={activeStyle} onClick={handleLinkClick}>Public Habits</NavLink></li>
+          <li><NavLink to="/about" className={activeStyle} onClick={handleLinkClick}>About</NavLink></li>
          
             {!user && (
               <>
@@ -102,15 +123,23 @@ const Navbar = () => {
           </ul>
           
         </div>
-        <input type="checkbox" className='toggle theme-controller md:hidden' value="dark" id="" />
+         {/* THEME TOGGLE */}
+                    <label className="swap swap-rotate md:hidden">          <input type="checkbox" onChange={handleThemeToggle} checked={theme === "dark"} />
+          {/* Sun Icon */}
+          <p className="text-3xl"><PiSunLight /></p>
+
+        {/* Moon Icon */}
+            <p className="text-3xl"><PiSunDimFill />
+</p>
+              </label>
 
         {/* --------- Desktop Menu --------- */}
         <ul className="menu menu-horizontal hidden md:flex gap-4 text-[16px] items-center">
           <li><NavLink to="/" className={activeStyle} onClick={handleLinkClick}>Home</NavLink></li>
           <li><NavLink to="/add-habit" className={activeStyle} onClick={handleLinkClick}>Add Habit</NavLink></li>
-          <li><NavLink to="/my-habits" className={activeStyle} onClick={handleLinkClick}>My Habits</NavLink></li>
           <li><NavLink to="/public-habits" className={activeStyle} onClick={handleLinkClick}>Public Habits</NavLink></li>
-          
+          <li><NavLink to="/about" className={activeStyle} onClick={handleLinkClick}>About</NavLink></li>
+          {user && <li><NavLink to="/dashboard" className={activeStyle} onClick={handleLinkClick}>Dashboard</NavLink></li>}
           
           {!user && (
             <>
@@ -153,10 +182,15 @@ const Navbar = () => {
               </>
             )}
           </ul>
-          
         </div>
-            <input type="checkbox" className='toggle theme-controller' value="dark" id="" />
+        {/* THEME TOGGLE */}
+                    <label className="swap swap-rotate"> <input type="checkbox" onChange={handleThemeToggle} checked={theme === "dark"} />
+          {/* Sun Icon */}
+          <p className="text-3xl"><PiSunLight /></p>
 
+        {/* Moon Icon */}
+            <p className="text-3xl"><PiSunDimFill /></p>
+              </label>
         </ul>
           
         

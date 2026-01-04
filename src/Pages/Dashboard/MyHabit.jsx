@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
-import { AuthContext } from "../providers/AuthProvider";
-import Loading from "../Component/Loading";
+import { AuthContext } from "../../providers/AuthProvider";
+import Loading from "../../Component/Loading";
 
 const MyHabits = () => {
   const { user } = useContext(AuthContext);

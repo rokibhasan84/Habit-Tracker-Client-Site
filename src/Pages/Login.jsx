@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
@@ -8,8 +8,6 @@ import { IoMdEyeOff } from "react-icons/io";
 const Login = () => {
   const { loginUser, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [showPassword, setShowPassword]=useState(false);
@@ -24,7 +22,7 @@ const Login = () => {
     loginUser(email, password)
       .then(() => {
         toast.success("Login Successful!");
-        navigate(from, { replace: true });
+        navigate("/dashboard");
       })
       .catch((err) => setError(err.message));
   };
@@ -34,7 +32,7 @@ const Login = () => {
     googleLogin()
       .then(() => {
         toast.success("Google Login Successful!");
-        navigate(from, { replace: true });
+        navigate("/dashboard");
       })
       .catch((err) => setError(err.message));
   };
