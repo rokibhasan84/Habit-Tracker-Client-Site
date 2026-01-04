@@ -3,7 +3,7 @@ export default function About() {
     <div className="bg-base-100 px-4 py-10">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">
+          <h1 className="text-4xl text-[#cf0ae0] font-bold mb-4">
             About Habit Tracker
           </h1>
           <p className="text-gray-500 text-lg">

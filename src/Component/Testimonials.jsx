@@ -29,7 +29,7 @@ export default function Testimonials() {
   return (
     <section className="py-16 bg-base-200">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-10">
+        <h2 className="text-3xl font-bold text-[#cf0ae0] text-center mb-10">
           What Our Users Say 💬
         </h2>
 

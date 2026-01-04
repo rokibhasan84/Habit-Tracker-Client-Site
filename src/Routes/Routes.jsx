@@ -18,6 +18,7 @@ import DashboardHome from '../Pages/Dashboard/DashboardHome';
 import Analytics from '../Pages/Dashboard/Analytics';
 import AdminUsers from '../Pages/Dashboard/AdminUsers';
 import AdminHabits from '../Pages/Dashboard/AdminHabits';
+import About from '../Component/About';
 
 
 const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
       },
       {
+        path: '/about',
+        element: <About></About>,
+      },
+      {
         path: "*",
         Component: NotFound,
       },
@@ -81,10 +86,6 @@ const router = createBrowserRouter([
         children: [
           {
             index: true, element: <DashboardHome></DashboardHome>
-          },
-          {
-            path: "analytics",
-            element: <Analytics></Analytics>
           },
           {
             path: "admin-users",

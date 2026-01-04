@@ -6,6 +6,7 @@ import ExtraSection from '../Component/ExtraSection';
 import FAQSection from '../Component/FAQSection';
 import About from '../Component/About';
 import Testimonials from '../Component/Testimonials';
+import CallToAction from '../Component/CallToAction';
 
 const Home = () => {
   return (

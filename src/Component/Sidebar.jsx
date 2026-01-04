@@ -21,15 +21,12 @@ const Sidebar = () => {
         My Habits
       </NavLink>
       <NavLink to="/dashboard/admin-habits" className="block mb-3">
-        Admin Habits
+        Habits
       </NavLink>
       <NavLink to="/dashboard/admin-users" className="block mb-3">
-        Admin Users
+       Users
       </NavLink>
 
-      <NavLink to="/dashboard/analytics" className="block mb-3">
-        Analytics
-      </NavLink>
 
       {/* Admin Routes */}
       {role === "admin" && (
